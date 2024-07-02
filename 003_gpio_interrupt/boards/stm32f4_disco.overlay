@@ -12,7 +12,7 @@
     buttons {
         status = "okay";
         compatible = "gpio-keys";
-        user_button: user_button {
+        my_button: my_button {
             status = "okay";
             gpios = <&gpioa 0 GPIO_ACTIVE_HIGH>;
         };
