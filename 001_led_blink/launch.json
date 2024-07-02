@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "name": "Cortex Debug",
+            "executable": "${workspaceFolder}/build/zephyr/zephyr.elf",
+            "device": "STM32F091xB",
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f0x.cfg"
+            ],
+            
+            "serverArgs": [
+                "-c", "gdb_port 50000",
+                "-c", "adapter speed 5000"
+            ],
+
+            "gdbTarget": "localhost:50000",  // GDB hedef portunu değiştirin
+            "showDevDebugOutput": "both",
+            "runToEntryPoint": "main",
+ 
+            "svdFile": "${workspaceFolder}/STM32F091.svd"
+            
+        }
+    ]
+}
+
