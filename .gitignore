@@ -1,0 +1,4 @@
+
+# Ignore all build directories
+**/build/*
+build/*
