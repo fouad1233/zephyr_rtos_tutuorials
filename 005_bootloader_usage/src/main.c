@@ -13,12 +13,13 @@ static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 int main(void){
     
     gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
-
+    //Configure button as input
+    
     
     while(true){
         increment_counter();
         gpio_pin_toggle_dt(&led);
-        k_msleep(1000); // Sleep for 1 second
+        k_msleep(100); // Sleep for 1 second
         
     }
     return 0;
