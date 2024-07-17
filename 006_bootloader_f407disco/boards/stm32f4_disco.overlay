@@ -1,0 +1,45 @@
+
+/ {
+    leds {
+        status = "okay";
+        compatible = "gpio-leds"; 
+        blinking_led: blinking_led { //yorum
+            status = "okay";
+            gpios = <&gpiod 13 GPIO_ACTIVE_HIGH>;  // GPIO_ACTIVE_HIGH (or GPIO_ACTIVE_LOW): Specifies the active logic level of a GPIO pin.
+        };
+    };
+};
+
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        boot_partition: partition@0 {
+            label = "mcuboot";
+            reg = <0x00000000 0x00010000>; /* 64 KB */
+        };
+
+        slot0_partition: partition@10000 {
+            label = "image-0";
+            reg = <0x00010000 0x00018000>; /* 96 KB */
+        };
+
+        slot1_partition: partition@20000 {
+            label = "image-1";
+            reg = <0x00020000 0x00018000>; /* 96 KB */
+        };
+
+        storage_partition: partition@38000 {
+            label = "storage";
+            reg = <0x00038000 0x00008000>; /* 32 KB */
+        };
+    };
+};
+
+/ {
+    chosen {
+        zephyr,code-partition = &slot0_partition;
+    };
+};
