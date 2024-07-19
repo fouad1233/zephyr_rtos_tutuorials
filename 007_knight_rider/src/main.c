@@ -9,7 +9,6 @@
 #define OUT3_NODE DT_NODELABEL(out3)
 #define OUT4_NODE DT_NODELABEL(out4)
 
-static const struct gpio_dt_spec led0 = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 static const struct gpio_dt_spec out1 = GPIO_DT_SPEC_GET(OUT1_NODE, gpios);
 static const struct gpio_dt_spec out2 = GPIO_DT_SPEC_GET(OUT2_NODE, gpios);
 static const struct gpio_dt_spec out3 = GPIO_DT_SPEC_GET(OUT3_NODE, gpios);
