@@ -1,9 +1,15 @@
 cmake_minimum_required(VERSION 3.22)
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(BOARD stm32f4_disco )
+set(BOARD stm32f4_disco)
 
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(001_led_blink)
 
 target_sources(app PRIVATE src/main.c)
 
+# Include the custom Kconfig file
+zephyr_include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
+# Ensure that the Kconfig file is processed
+set(KCONFIG_ROOT ${CMAKE_CURRENT_SOURCE_DIR})

@@ -2,9 +2,15 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/devicetree.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/logging/log_ctrl.h>
+
 
 #define GPIO_PIN 13
 #define LED0_NODE DT_NODELABEL(blinking_led)
+
+LOG_MODULE_REGISTER(main, CONFIG_MAIN_LOG_LEVEL);
+
 int counter = 30;
 //#if DT_NODE_HAS_STATUS(MY_SERIAL, okay)
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
@@ -28,6 +34,8 @@ int main(void){
     int pin_set = 0;
     while(true){
         increment_counter();
+		// log the counter value with LOG_DBG
+		LOG_INF("Counter value: %d", counter);
         //pin_set = gpio_pin_set_raw(led.port, led.pin, 1);
         //pin_set = gpio_pin_set_dt(&led, 1);
         pin_set = gpio_pin_toggle_dt(&led);
@@ -41,7 +49,3 @@ void increment_counter(){
     counter = counter + 1;
 }
     
-
-
-
-
